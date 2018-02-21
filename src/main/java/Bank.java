@@ -29,6 +29,15 @@ public class Bank {
         /*
          * Implement this function
          */
+       bankAccount.setAccountBalance(bankAccount.getAccountBalance() - amount);
+        System.out.println("setAccountBalanve STARTED with " + amount + " withdrawn " + bankAccount.getOwnerName());
+       if (bankAccount.getAccountBalance() >= 0) {
+           System.out.println("setAccountBalanve scuess with " + amount + " withdrawn");
+           return true;
+       } else {
+           System.out.println("setbalance did not work");
+       return false;
+       }
     }
 
     /**
@@ -45,6 +54,8 @@ public class Bank {
         /*
          * Implement this function
          */
+        bankAccount.setAccountBalance(bankAccount.getAccountNumber() - amount);
+        return true;
     }
 
     /**
@@ -64,6 +75,14 @@ public class Bank {
         /*
          * Implement this function
          */
+        destination.setAccountBalance(amount);
+        source.setAccountBalance(source.getAccountBalance() - amount);
+        if (source.getAccountBalance() >= 0) {
+            return true;
+        } else {
+            System.out.println("transfermoney did not work");
+            return false;
+        }
     }
 
     /**
@@ -77,8 +96,13 @@ public class Bank {
         /*
          * Implement this function
          */
+        System.out.println("changeownder name start");
+        bankAccount.setOwnerName(name);
     }
 
+    /**
+     * javadoc.
+     */
     public static int totalAccounts = 0;
     /**
      * Uses static variable to get number of bank accounts opened.
@@ -89,6 +113,7 @@ public class Bank {
         /*
          * Implement this function
          */
+        return totalAccounts;
     }
 
     /**
