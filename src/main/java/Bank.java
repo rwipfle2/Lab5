@@ -29,15 +29,19 @@ public class Bank {
         /*
          * Implement this function
          */
-       bankAccount.setAccountBalance(bankAccount.getAccountBalance() - amount);
-        System.out.println("setAccountBalanve STARTED with " + amount + " withdrawn " + bankAccount.getOwnerName());
-       if (bankAccount.getAccountBalance() >= 0) {
-           System.out.println("setAccountBalanve scuess with " + amount + " withdrawn");
-           return true;
-       } else {
-           System.out.println("setbalance did not work");
-       return false;
-       }
+        if (bankAccount != null && amount > 0) {
+            bankAccount.setAccountBalance(bankAccount.getAccountBalance() - amount);
+            System.out.println("setAccountBalanve STARTED with " + amount + " withdrawn " + bankAccount.getOwnerName());
+            if (bankAccount.getAccountBalance() >= 0) {
+                System.out.println("setAccountBalanve scuess with " + amount + " withdrawn");
+                return true;
+            } else {
+                System.out.println("setbalance did not work");
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -54,8 +58,14 @@ public class Bank {
         /*
          * Implement this function
          */
-        bankAccount.setAccountBalance(bankAccount.getAccountNumber() - amount);
-        return true;
+        System.out.println("desposit money hhas started");
+        if (bankAccount != null && amount > 0) {
+            System.out.println("depositon money has started- bankaccoutn not null");
+            bankAccount.setAccountBalance(bankAccount.getAccountNumber() + amount);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -75,12 +85,17 @@ public class Bank {
         /*
          * Implement this function
          */
-        destination.setAccountBalance(amount);
-        source.setAccountBalance(source.getAccountBalance() - amount);
-        if (source.getAccountBalance() >= 0) {
-            return true;
+        if (source != null && destination != null && amount > 0) {
+            source.setAccountBalance(source.getAccountBalance() - amount);
+            if (source.getAccountBalance() >= 0) {
+                destination.setAccountBalance(destination.getAccountBalance() + amount);
+                return true;
+            } else {
+                System.out.println("transfermoney did not work");
+                source.setAccountBalance(source.getAccountBalance() + amount);
+                return false;
+            }
         } else {
-            System.out.println("transfermoney did not work");
             return false;
         }
     }
